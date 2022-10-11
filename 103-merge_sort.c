@@ -105,10 +105,10 @@ void mergeSort(int *cpy, int first, int size, int *array)
  */
 void copy_array(int *arr, int *cpy, int size)
 {
-	int i;
+	int x;
 
-	for (i = 0; i < (int)size; i++)
-		cpy[i] = arr[i];
+	for (x = 0; x < (int)size; x++)
+		cpy[x] = arr[x];
 }
 
 /**
@@ -118,15 +118,15 @@ void copy_array(int *arr, int *cpy, int size)
  */
 void merge_sort(int *array, size_t size)
 {
-	int *cpy;
+	int *arr;
 
-	cpy = malloc(sizeof(int) * size - 1);
+	arr = malloc(sizeof(int) * size - 1);
 
-	if (cpy == NULL)
+	if (arr == NULL)
 		return;
 
-	copy_array(array, cpy, size);
+	copy_array(array, arr, size);
 
-	mergeSort(cpy, 0, size, array);
-	free(cpy);
+	mergeSort(arr, 0, size, array);
+	free(arr);
 }
