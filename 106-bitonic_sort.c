@@ -15,7 +15,7 @@ void bitonic_merge(int *array, int l, int r, int direction)
 	{
 		for (x = l; x < l + mid; x++)
 		{
-			if (direction == (array[i] > array[x + mid]))
+			if (direction == (array[x] > array[x + mid]))
 			{
 				tmp = array[x + mid];
 				array[x + mid] = array[x];
