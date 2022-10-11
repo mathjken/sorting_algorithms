@@ -1,13 +1,13 @@
 #include "sort.h"
 
 /**
- * heapify - turns an array in a heap tree
+ * heap_tree - turns an array in a heap tree
  * @array: array to turn into heap
  * @s: size of the subtree
  * @root: index of the subtree in the heap
  * @size: size of the whole array
  */
-void heapify(int *array, size_t s, size_t root, size_t size)
+void heap_tree(int *array, size_t s, size_t root, size_t size)
 {
 	size_t max, left, right;
 	int tmp;
@@ -39,22 +39,21 @@ void heapify(int *array, size_t s, size_t root, size_t size)
  */
 void heap_sort(int *array, size_t size)
 {
-	int i;
-	int tmp;
+	int x, tmp;
 
 	if (size < 2)
 		return;
 
-	for (i = size / 2 - 1; i >= 0; i--)
-		heapify(array, size, (size_t)i, size);
+	for (x = size / 2 - 1; x >= 0; x--)
+		heap_tree(array, size, (size_t)x, size);
 
-	for (i = size - 1; i >= 0; i--)
+	for (x = size - 1; x >= 0; x--)
 	{
-		tmp = array[i];
-		array[i] = array[0];
+		tmp = array[x];
+		array[x] = array[0];
 		array[0] = tmp;
-		if (i != 0)
+		if (x != 0)
 			print_array(array, size);
-		heapify(array, (size_t)i, 0, size);
+		heap_tree(array, (size_t)x, 0, size);
 	}
 }
