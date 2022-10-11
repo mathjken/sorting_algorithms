@@ -7,44 +7,44 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *c, *p, *nextnode;
+	listint_t *new_n, *old, *nextnode;
 
 	if (list == NULL || !(*list) || (*list)->next == NULL)
 		return;
-	c = (*list)->next;
-	nextnode = c->next;
-	while (c)
+	new_n = (*list)->next;
+	nextnode = new_n->next;
+	while (new_n)
 	{
-		if (c->n < c->prev->n)
+		if (new_n->n < new_n->prev->n)
 		{
-			p = c->prev;
-			while (p && (c->n < p->n))
+			old = new_n->prev;
+			while (old && (new_n->n < old->n))
 			{
-				if (!(p->prev))
+				if (!(old->prev))
 				{
-					p->prev = c;
-					c->prev->next = c->next;
-					if (c->next)
-						c->next->prev = c->prev;
-					c->next = p;
-					c->prev = NULL;
-					*list = c;
+					old->prev = new_n;
+					new_n->prev->next = new_n->next;
+					if (new_n->next)
+						new_n->next->prev = new_n->prev;
+					new_n->next = old;
+					new_n->prev = NULL;
+					*list = new_n;
 				}
 				else
 				{
-					c->prev->next = c->next;
-					if (c->next)
-						c->next->prev = c->prev;
-					p->prev->next = c;
-					c->prev = p->prev;
-					p->prev = c;
-					c->next = p;
+					new_n->prev->next = new_n->next;
+					if (new_n->next)
+						new_n->next->prev = new_n->prev;
+					old->prev->next = new_n;
+					new_n->prev = old->prev;
+					old->prev = new_n;
+					new_n->next = old;
 				}
 				print_list(*list);
-				p = c->prev;
+				old = new_n->prev;
 			}
 		}
-		c = nextnode;
-		c ? (nextnode = c->next) : (nextnode = NULL);
+		new_n = nextnode;
+		new_n ? (nextnode = new_n->next) : (nextnode = NULL);
 	}
 }
