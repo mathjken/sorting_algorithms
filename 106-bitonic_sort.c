@@ -9,17 +9,17 @@
  */
 void bitonic_merge(int *array, int l, int r, int direction)
 {
-	int tmp, i, step = (l + r) / 2, mid = (r - l + 1) / 2;
+	int tmp, x, step = (l + r) / 2, mid = (r - l + 1) / 2;
 
 	if (r - l >= 1)
 	{
-		for (i = l; i < l + mid; i++)
+		for (x = l; x < l + mid; x++)
 		{
-			if (direction == (array[i] > array[i + mid]))
+			if (direction == (array[i] > array[x + mid]))
 			{
-				tmp = array[i + mid];
-				array[i + mid] = array[i];
-				array[i] = tmp;
+				tmp = array[x + mid];
+				array[x + mid] = array[x];
+				array[x] = tmp;
 			}
 		}
 		bitonic_merge(array, l, step, direction);
