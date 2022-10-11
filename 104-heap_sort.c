@@ -28,7 +28,7 @@ void heap_tree(int *array, size_t s, size_t root, size_t size)
 		array[root] = array[max];
 		array[max] = tmp;
 		print_array(array, size);
-		heapify(array, s, max, size);
+		heap_tree(array, s, max, size);
 	}
 }
 
