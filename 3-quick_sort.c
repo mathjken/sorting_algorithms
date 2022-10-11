@@ -5,11 +5,11 @@
  * @num1: first number
  * @num2: second number
  */
-void swap(int *num1, int *num2)
+void swap(int *n1, int *n2)
 {
-	int tmp = *num1;
-	*num1 = *num2;
-	*num2 = tmp;
+	int tmp = *n1;
+	*n1 = *n2;
+	*n2 = tmp;
 }
 
 /**
@@ -26,29 +26,27 @@ int partition(int *array, int low, int high, size_t size)
 	/* select the rightmost element as pivot */
 	int pivot = array[high];
 	/* pointer for greater element */
-	int ptr = low;
-	int j;
+	int ptr = low, z;
 	/*
 	 *traverse across each element in array and
 	 *compare them with pivot
 	 */
-	for (j = low; j < high; j++)
+	for (z = low; z < high; z++)
 	{
-		if (array[j] <= pivot)
+		if (array[z] <= pivot)
 		{
-			if (ptr != j)
+			if (ptr != z)
 			{
 				/*
 				 * if element smaller than pivot is found
-				 *swap it with the greater element pointed by i
+				 *swap it with the greater element
 				 */
-				swap(&array[ptr], &array[j]);
+				swap(&array[ptr], &array[z]);
 				print_array(array, size);
 			}
 			ptr++;
 		}
 	}
-	/* swap the pivot element with the greater element at i */
 	if (ptr != high)
 	{
 		swap(&array[ptr], &array[high]);
