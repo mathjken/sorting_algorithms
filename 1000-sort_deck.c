@@ -58,7 +58,7 @@ void sort_deck(deck_node_t **deck)
 	node = *deck;
 	while (node)
 	{
-		if (node->prev && get_card_value(node) < get_card_value(node->prev))
+		if (node->prev && card_value(node) < card_value(node->prev))
 		{
 			one = node->prev->prev;
 			two = node->prev;
@@ -84,12 +84,12 @@ void sort_deck(deck_node_t **deck)
 }
 
 /**
- * get_card_value - returns the value of a card
+ * card_value - returns the value of a card
  * @node: card in a deck
  *
  * Return: value between 1 and 52
  */
-int get_card_value(deck_node_t *node)
+int card_value(deck_node_t *node)
 {
 	char *val[13] = {"Ace", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "Jack", "Queen", "King"};
