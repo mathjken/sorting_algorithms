@@ -60,7 +60,7 @@ void cocktail_sort_list(listint_t **list)
 		while (node->prev)
 		{
 			nextnode = node->prev;
-			if (nextnode && node->n < nextnode->node)
+			if (nextnode && node->n < nextnode->n)
 			{
 				swap(nextnode, node, list);
 				checker = 1;
