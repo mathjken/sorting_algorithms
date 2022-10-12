@@ -1,31 +1,31 @@
 #include "sort.h"
 /**
  * swap - swaps both
- * @p: first node to swap
- * @c: second node to swap
+ * @first: first node to swap
+ * @second: second node to swap
  * @list: list to set null or not
  */
-void swap(listint_t *p, listint_t *c, listint_t **list)
+void swap(listint_t *first, listint_t *second, listint_t **list)
 {
-	if (!(p->prev))
+	if (!(first->prev))
 	{
-		p->next = c->next;
-		if (c->next)
-			c->next->prev = p;
-		c->next = p;
-		c->prev = NULL;
-		p->prev = c;
-		*list = c;
+		first->next = second->next;
+		if (second->next)
+			second->next->prev = first;
+		second->next = first;
+		second->prev = NULL;
+		first->prev = second;
+		*list = second;
 	}
 	else
 	{
-		c->prev->next = c->next;
-		if (c->next)
-			c->next->prev = c->prev;
-		p->prev->next = c;
-		c->prev = p->prev;
-		p->prev = c;
-		c->next = p;
+		second->prev->next = second->next;
+		if (second->next)
+			second->next->prev = second->prev;
+		first->prev->next = second;
+		second->prev = first->prev;
+		first->prev = second;
+		second->next = first;
 	}
 }
 
@@ -35,40 +35,40 @@ void swap(listint_t *p, listint_t *c, listint_t **list)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *c, *nextnode;
-	int swapped;
+	listint_t *node, *nextnode;
+	int checker;
 
 	if (list == NULL || !(*list) || (*list)->next == NULL)
 		return;
 
-	c = (*list);
+	node = (*list);
 	do {
-		swapped = 0;
-		while (c->next)
+		checker = 0;
+		while (node->next)
 		{
-			nextnode = c->next;
-			if (nextnode && c->n > nextnode->n)
+			nextnode = node->next;
+			if (nextnode && node->n > nextnode->n)
 			{
-				swap(c, nextnode, list);
-				swapped = 1;
+				swap(node, nextnode, list);
+				checker = 1;
 				print_list((*list));
 			}
 			else
-				c = c->next;
+				node = node->next;
 		}
-		c = c->prev;
-		while (c->prev)
+		node = node->prev;
+		while (node->prev)
 		{
-			nextnode = c->prev;
-			if (nextnode && c->n < nextnode->n)
+			nextnode = node->prev;
+			if (nextnode && node->n < nextnode->node)
 			{
-				swap(nextnode, c, list);
-				swapped = 1;
+				swap(nextnode, node, list);
+				checker = 1;
 				print_list((*list));
 			}
 			else
-				c = c->prev;
+				node = node->prev;
 		}
-		c = c->next;
-	} while (swapped);
+		node = node->next;
+	} while (checker);
 }
